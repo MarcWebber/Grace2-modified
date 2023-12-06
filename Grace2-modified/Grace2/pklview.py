@@ -4,10 +4,21 @@ import pandas as pd
 import additional_greedy as ag
 import numpy as np
 import utils as u
+# 这是用于查看pkl文件的脚本
 if __name__ == "__main__":
-    data = pd.read_pickle('origin_data/train_data/activemq-junit/data.pkl')
-    print(type(data['matrix']))
-    print(data)
+    # read all data file
+    dir_path = "origin_data/train_data"
+    for project_name in os.listdir(dir_path):
+        data=pd.read_pickle(dir_path + "/" + project_name + "/data.pkl")
+        print(project_name)
+        # get codeNum,methodNum,testNum
+        codeNum=data['codeNum']
+        methNum=data['methodNum']
+        testNum=data['testNum']
+        print("codeNum:%d,methodNum:%d,testNum:%d"%(codeNum,methNum,testNum))
+    # data = pd.read_pickle('origin_data/train_data/activemq-junit/time.pkl')
+    # print(type(data['matrix']))
+    # print(data)
     '''
     dir_path = "origin_data/val_data"
     for project_name in os.listdir(dir_path):
@@ -67,13 +78,13 @@ if __name__ == "__main__":
 '''
 
 '''
-    with open('origin_data/train_data/activemq-junit/weight.pkl', 'rb') as f:
+    with open('origin_data/train_data/activemq-junit/time.pkl', 'rb') as f:
         data = pickle.load(f)
     matrix = np.array(data['mutant_matrix'])
     time = pd.read_pickle('origin_data/train_data/activemq-junit/time.pkl')
     s, val = ag.a_g(matrix.T, time)
     data['t_weight_list'] = list(val)
-    with open('origin_data/train_data/activemq-junit/weight.pkl', 'wb') as f:
+    with open('origin_data/test_data/activemq-junit/time.pkl', 'wb') as f:
         pickle.dump(data, f)
 '''
 

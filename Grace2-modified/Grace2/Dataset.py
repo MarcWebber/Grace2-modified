@@ -149,7 +149,8 @@ class SumDataset(torch.utils.data.dataset.Dataset):
             self.train_project_names=train_project_names
         elif type == 'task':
             task_project_names = []
-            dir_path = "C:/Users/卢晨/Desktop/Grace2-modified/Grace2/task_data" # absolute path
+            # TODO: 修改路径
+            dir_path = "../../Grace2-modified/Grace2/task_data" # absolute path
             dir_path = os.path.dirname(__file__) + '/task_data'
             for project_name in os.listdir(dir_path):
                 task_project_names.append(project_name)
@@ -190,27 +191,6 @@ class SumDataset(torch.utils.data.dataset.Dataset):
 
             allProjectLineNode.append(methodAndTestAndCodeInformation['codeTypeMap'])
 
-            # def normalize(x):
-            #     """
-            #     对x做归一化处理
-            #     """
-            #     max = 1e-9
-            #     min = 1e9
-            #     for k in range(len(x)):
-            #         if x[k] > max:
-            #             max = x[k]
-            #         if x[k] < min:
-            #             min = x[k]
-            #     if max == min:
-            #         max = 1
-            #         min = 0
-            #     for y in range(len(x)):
-            #         x[y] = (x[y] - min) / (max - min)
-            #
-            #     return x
-            #
-            # allProjectTestTime.append(normalize(time))
-            #
             allProjectTestTime.append(time)
             allProjectTestCoverageWeight.append(methodAndTestAndCodeInformation['coverage_weight'])
 

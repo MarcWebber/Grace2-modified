@@ -160,14 +160,14 @@ public class TCPengine {
 	public void js_extrat(String js_part_path) throws IOException{
 		//System.out.print(Cla_m);
 		String js_path = package_name.replace('.','/');
-		String class_js_path = null;
-		FileReader fileReader = null;
-		BufferedReader reader = null;
-		String tempString = null;
+		String class_js_path;
+		FileReader fileReader;
+		BufferedReader reader;
+		String tempString;
 		String lastString = null;
-		List<Integer> temp_list = null;
+		List<Integer> temp_list;
 		int test_num;
-		List<List<Integer>> l = null;
+		List<List<Integer>> l;
 		Set<Integer> med_set = Med.keySet();
 		Set<Integer> code_set = Code.keySet();
 		Set<String> class_set = classes.keySet();
@@ -286,7 +286,7 @@ public class TCPengine {
 		Process proc;
 		proc = Runtime.getRuntime().exec(arg);
 		BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-        String line = null;
+        String line;
         while ((line = in.readLine()) != null) {
             //System.out.println(line);
             output = line;
@@ -298,12 +298,19 @@ public class TCPengine {
 	
 	public static void main(String[] args) throws DocumentException, IOException, InterruptedException{
 		TCPengine reader = new TCPengine();
+
+		String filePath = args[0];
+
+		String xml_path = filePath + "/target/site/clover/clover.xml";
+		String js_part_path = filePath + "/target/site/clover/";
 		// set the xml_path to the path of your clover.xml
-		String xml_path = "D:\\eclipse workplace\\maven_helloworld\\target\\site\\clover\\clover.xml";
+//		String xml_path = "D:\\eclipse workplace\\maven_helloworld\\target\\site\\clover\\clover.xml";
 		reader.mc_extract(xml_path);
 		// set the js_part_path to the path of your clover directory name
-		String js_part_path = "D:/eclipse workplace/maven_helloworld/target/site/clover/";
+//		String js_part_path = "D:/eclipse workplace/maven_helloworld/target/site/clover/";
 		reader.js_extrat(js_part_path);
+
+		// two args: xml_path,js_part_path
 		reader.OCP();
 		reader.model_predict();
 		System.out.println(reader.output);

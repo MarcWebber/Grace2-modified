@@ -42,7 +42,7 @@ def get_apfdc(seq, matrix, time):
     apfdc = t1 / (sum(time) * len(matrix[0]))
     return apfdc
 
-def a_g_withouttime(matrix):
+def a_githouttime(matrix):
     cover = np.zeros(len(matrix[0]))
     d = dict(zip(range(len(matrix)), np.zeros(len(matrix))))
     rest = len(matrix)
